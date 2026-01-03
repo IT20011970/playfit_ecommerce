@@ -1,0 +1,83 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type OrderItem {
+  id: ID!
+  productId: String!
+  productName: String!
+  productPrice: Float!
+  productImage: String!
+  quantity: Float!
+  size: String!
+  color: String!
+}
+
+type Order {
+  id: ID!
+  userId: String!
+  customerName: String!
+  customerEmail: String!
+  customerAddress: String!
+  totalAmount: Float!
+  status: OrderStatus!
+  trackingId: String
+  shippedBy: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  items: [OrderItem!]!
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type OrderCreationResponse {
+  success: Boolean!
+  message: String!
+  orderId: String
+}
+
+type Query {
+  ordersByUser(userId: String!): [Order!]!
+  allOrders: [Order!]!
+  order(id: Int!): Order!
+}
+
+type Mutation {
+  createOrder(input: CreateOrderInput!, cartItems: [CartItemInput!]!): OrderCreationResponse!
+  shipOrder(input: ShipOrderInput!): Order!
+  updateOrderStatus(orderId: Int!, status: String!): Order!
+}
+
+input CreateOrderInput {
+  userId: String!
+  customerName: String!
+  customerEmail: String!
+  customerAddress: String!
+}
+
+input CartItemInput {
+  productId: String!
+  productName: String!
+  productPrice: Float!
+  productImage: String!
+  quantity: Int!
+  size: String!
+  color: String!
+}
+
+input ShipOrderInput {
+  orderId: Int!
+  trackingId: String!
+  shippedByAdmin: String!
+}

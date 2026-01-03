@@ -1,0 +1,21 @@
+# Local Dockerfile for federation_gateway
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY federation_gateway/package*.json ./
+COPY federation_gateway/tsconfig*.json ./
+COPY federation_gateway/nest-cli.json ./
+
+# Install dependencies
+RUN npm ci --legacy-peer-deps
+
+# Copy source code
+COPY federation_gateway/src ./src
+
+# Build the application
+RUN npm run build
+
+EXPOSE 4000
+CMD ["node", "dist/main"]

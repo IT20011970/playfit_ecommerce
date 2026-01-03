@@ -1,0 +1,56 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  # Local Loki
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  # Scrape Docker container logs
+  - job_name: docker
+    docker_sd_configs:
+      - host: unix:///var/run/docker.sock
+        refresh_interval: 5s
+    relabel_configs:
+      # Container name as label
+      - source_labels: ['__meta_docker_container_name']
+        regex: '/(.*)'
+        target_label: 'container'
+      
+      # Service name from container name
+      - source_labels: ['__meta_docker_container_name']
+        regex: '/playfit-(.+)$'
+        target_label: 'service'
+        replacement: '${1}'
+      
+      # Add job label
+      - source_labels: ['__meta_docker_container_name']
+        target_label: 'job'
+        replacement: 'docker'
+      
+      # Container ID
+      - source_labels: ['__meta_docker_container_id']
+        target_label: 'container_id'
+    
+    pipeline_stages:
+      # Clean up ANSI color codes from NestJS logs
+      - replace:
+          expression: '\x1b\[[0-9;]*m'
+          source: __entry__
+          replace: ''
+      
+      # Use Docker timestamp instead of parsing from log content
+      # The timestamp is already available from Docker in the correct format
+
+  # Scrape system logs (optional)
+  - job_name: system
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: varlogs
+          __path__: /var/log/*.log

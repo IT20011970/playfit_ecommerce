@@ -1,0 +1,4 @@
+{
+  "DATABASE_URL": "postgresql://neondb_owner:npg_WHJ72IBcyfkF@ep-patient-dew-a4m078xf-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+  "JWT_SECRET": "dev-jwt-secret"
+}

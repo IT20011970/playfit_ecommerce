@@ -1,0 +1,15 @@
+{
+  "name": "kafka-avro-viewer",
+  "version": "1.0.0",
+  "description": "View Kafka messages in Avro format",
+  "scripts": {
+    "view:inventory": "node view-kafka-logs.js inventory-events",
+    "view:order": "node view-kafka-logs.js order-events",
+    "view:all": "node view-kafka-logs.js"
+  },
+  "dependencies": {
+    "@kafkajs/confluent-schema-registry": "^3.3.0",
+    "avsc": "^5.7.7",
+    "kafkajs": "^2.2.4"
+  }
+}

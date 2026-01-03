@@ -1,0 +1,21 @@
+# Local Dockerfile for event_processor
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY event_processor/package*.json ./
+COPY event_processor/tsconfig*.json ./
+COPY event_processor/nest-cli.json ./
+
+# Install dependencies
+RUN npm ci --legacy-peer-deps
+
+# Copy source code
+COPY event_processor/src ./src
+
+# Build the application
+RUN npm run build
+
+EXPOSE 3005
+CMD ["node", "dist/main"]

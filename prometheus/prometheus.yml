@@ -1,0 +1,29 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'playfit'
+    environment: 'production'
+
+# Scrape configs for Azure services
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Azure App Services - adjust to your service URLs
+  - job_name: 'azure-services'
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+    static_configs:
+      - targets:
+          - 'devplayfituserservice.azurewebsites.net'
+          - 'devplayfitcartservice.azurewebsites.net'
+          - 'devplayfitorderservice.azurewebsites.net'
+          - 'devplayfitinventoryservice.azurewebsites.net'
+          - 'devplayfiteventprocessor.azurewebsites.net'
+          - 'devplayfitnotificationservice.azurewebsites.net'
+        labels:
+          environment: 'azure'
+          project: 'playfit'

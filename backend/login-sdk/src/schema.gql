@@ -1,0 +1,95 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""User GraphQL type"""
+type User {
+  """Primary id"""
+  id: Int!
+  userId: String
+  password: String
+  salt: String
+  role: String
+  refreshToken: String
+  refreshTokenExpiryTime: DateTime
+
+  """National ID / NIC"""
+  refNo: String
+  contactNo: String
+  isActive: Int!
+  extraText1: String
+  extraText2: String
+  extraText3: String
+  extratext4: String
+  extraInt1: Int
+  extraInt2: Int
+  extraInt3: Int
+  createby: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type AuthResponse {
+  accessToken: String!
+  expiresIn: Int!
+  user: User!
+}
+
+type Query {
+  users: [User!]!
+  user(id: Int!): User
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User!
+  updateUser(id: Int!, input: UpdateUserInput!): User!
+  deleteUser(id: Int!): Boolean!
+  signIn(userId: String!, password: String!): AuthResponse!
+}
+
+input CreateUserInput {
+  userId: String
+  password: String
+  salt: String
+  role: String
+  refreshToken: String
+  refreshTokenExpiryTime: DateTime
+
+  """National ID / NIC"""
+  refNo: String
+  contactNo: String
+  isActive: Int
+  extraText1: String
+  extraText2: String
+  extraText3: String
+  extratext4: String
+  extraInt1: Int
+  extraInt2: Int
+  extraInt3: Int
+  createby: String
+}
+
+input UpdateUserInput {
+  userId: String
+  password: String
+  salt: String
+  role: String
+  refreshToken: String
+  refreshTokenExpiryTime: DateTime
+
+  """National ID / NIC"""
+  refNo: String
+  contactNo: String
+  isActive: Int
+  extraText1: String
+  extraText2: String
+  extraText3: String
+  extratext4: String
+  extraInt1: Int
+  extraInt2: Int
+  extraInt3: Int
+  createby: String
+}

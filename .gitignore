@@ -1,0 +1,67 @@
+
+node_modules/
+ist/
+build/
+.temp/
+.tmp/
+dist/
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+
+.DS_Store
+
+coverage/
+.nyc_output/
+
+
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code specific
+# This ignores user-specific settings but allows for committing
+# shared project settings (like recommended extensions or launch configurations).
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+# Keep your secret environment variables out of the git repository.
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+.env.grafana-cloud
+
+# Local plaintext secrets used only for encryption (do NOT commit)
+plain-secrets.json
+
+# Grafana data volumes
+grafana/data/
+loki/data/
+prometheus/data/
+tempo/data/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Node.js diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+

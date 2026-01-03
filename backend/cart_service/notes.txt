@@ -1,0 +1,15 @@
+query {
+  cart(userId:"3")
+   {
+    userId
+    productId
+    quantity
+    size
+    color
+    productName
+    productPrice
+    productImage
+    createdAt
+    updatedAt
+  }
+}

@@ -1,0 +1,70 @@
+trigger:
+  branches:
+    include:
+      - main
+      - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: $(Build.Repository.Name)
+
+stages:
+  - stage: BuildAndDeploy
+    displayName: 'Build and Deploy Services'
+    jobs:
+      - job: DeployUserService
+        displayName: 'Build and Deploy User Service'
+        steps:
+          - task: Docker@2
+            displayName: 'Build User Service Image'
+            inputs:
+              command: build
+              dockerfile: backend/login-sdk/Dockerfile
+              tags: 'user-service:$(Build.BuildId)'
+              arguments: '--tag user-service:latest'
+
+          - task: AzureWebAppContainer@1
+            displayName: 'Deploy User Service'
+            inputs:
+              azureSubscription: 'Azure subscription 1'
+              appName: 'playfit-user-service'
+              containers: 'user-service:latest'
+
+      - job: DeployCartService
+        displayName: 'Build and Deploy Cart Service'
+        steps:
+          - task: Docker@2
+            displayName: 'Build Cart Service Image'
+            inputs:
+              command: build
+              dockerfile: backend/cart_service/Dockerfile
+              tags: 'cart-service:$(Build.BuildId)'
+              arguments: '--tag cart-service:latest'
+
+          - task: AzureWebAppContainer@1
+            displayName: 'Deploy Cart Service'
+            inputs:
+              azureSubscription: 'Azure subscription 1'
+              appName: 'playfit-cart-service'
+              containers: 'cart-service:latest'
+
+      - job: DeployGateway
+        displayName: 'Build and Deploy Gateway'
+        steps:
+          - task: Docker@2
+            displayName: 'Build Gateway Image'
+            inputs:
+              command: build
+              dockerfile: backend/federation_gateway/Dockerfile
+              tags: 'gateway:$(Build.BuildId)'
+              arguments: '--tag gateway:latest'
+
+          - task: AzureWebAppContainer@1
+            displayName: 'Deploy Gateway'
+            inputs:
+              azureSubscription: 'Azure subscription 1'
+              appName: 'playfit-gateway'
+              containers: 'gateway:latest'

@@ -1,0 +1,47 @@
+nest g module
+nest g resolver
+nest g service
+
+
+mutation {
+  createUser(
+    input: {
+      userId: "gayan@gmail.com"
+      password: "123"
+      role: "admin"
+      refNo: "REF-001"
+      contactNo: "0771234567"
+      isActive: 1
+      extraText1: "example"
+      extraInt1: 10
+      createby: "system"
+    }
+  ) {
+    id
+    userId
+    role
+    contactNo
+    isActive
+  }
+}
+
+
+
+mutation {
+  signIn(userId: "gayanpoornima@gmail.com", password: "123") {
+    accessToken
+    expiresIn
+  }
+}
+
+
+query {
+  users {
+    id
+    userId
+    role
+    isActive
+    salt
+    password
+  }
+}

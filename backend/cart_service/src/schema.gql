@@ -1,0 +1,125 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Cart item GraphQL type"""
+type CartItemGql {
+  """User ID"""
+  userId: String!
+
+  """Product ID"""
+  productId: String!
+
+  """Quantity"""
+  quantity: Int!
+
+  """Selected size"""
+  size: String!
+
+  """Selected color"""
+  color: String!
+
+  """Product name"""
+  productName: String
+
+  """Product price"""
+  productPrice: Float
+
+  """Product image URL"""
+  productImage: String
+
+  """Created at timestamp"""
+  createdAt: DateTime!
+
+  """Updated at timestamp"""
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type User {
+  id: Int!
+  cartItems: [CartItemGql!]!
+}
+
+type Query {
+  """Get cart items for a user"""
+  cart(userId: String!): [CartItemGql!]!
+
+  """Get total price of cart items"""
+  cartTotal(userId: String!): Float!
+}
+
+type Mutation {
+  """Add item to cart"""
+  addToCart(input: AddToCartInput!): CartItemGql!
+
+  """Update cart item quantity"""
+  updateCartItem(input: UpdateCartItemInput!): CartItemGql!
+
+  """Remove item from cart"""
+  removeFromCart(input: RemoveFromCartInput!): Boolean!
+
+  """Clear all cart items for a user"""
+  clearCart(userId: String!): Boolean!
+}
+
+input AddToCartInput {
+  """User ID"""
+  userId: String!
+
+  """Product ID"""
+  productId: String!
+
+  """Quantity to add"""
+  quantity: Int! = 1
+
+  """Selected size"""
+  size: String!
+
+  """Selected color"""
+  color: String!
+
+  """Product name"""
+  productName: String
+
+  """Product price"""
+  productPrice: Float
+
+  """Product image URL"""
+  productImage: String
+}
+
+input UpdateCartItemInput {
+  """User ID"""
+  userId: String!
+
+  """Product ID"""
+  productId: String!
+
+  """Size"""
+  size: String!
+
+  """Color"""
+  color: String!
+
+  """New quantity"""
+  quantity: Int!
+}
+
+input RemoveFromCartInput {
+  """User ID"""
+  userId: String!
+
+  """Product ID"""
+  productId: String!
+
+  """Size"""
+  size: String!
+
+  """Color"""
+  color: String!
+}
