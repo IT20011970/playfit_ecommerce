@@ -17,6 +17,19 @@ A modern, scalable e-commerce application built with microservices architecture 
 | MSc/CS/2025/037 | D.P.U.S.Nissanka | QA Engineer |
 | MSc/CS/2025/015 | S.R.P.Kodikara | Project Manager |
 
+### 🌐 Live Demo
+
+**Hosted locally with ngrok tunneling**:
+
+| Service | URL |
+|---------|-----|
+| **Frontend** | [https://wrongful-shauna-glutinously.ngrok-free.dev/](https://wrongful-shauna-glutinously.ngrok-free.dev/) |
+| **GraphQL Playground** | [https://wrongful-shauna-glutinously.ngrok-free.dev/graphql](https://wrongful-shauna-glutinously.ngrok-free.dev/graphql) |
+| **Grafana Dashboard** | [https://wrongful-shauna-glutinously.ngrok-free.dev/grafana](https://wrongful-shauna-glutinously.ngrok-free.dev/grafana) |
+| **Kafdrop (Kafka UI)** | [https://wrongful-shauna-glutinously.ngrok-free.dev/kafdrop](https://wrongful-shauna-glutinously.ngrok-free.dev/kafdrop) |
+
+*Note: This application is hosted on a local machine and exposed via ngrok tunneling for demonstration purposes.*
+
 ---
 
 ## 🎯 Features
