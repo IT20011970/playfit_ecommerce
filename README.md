@@ -117,7 +117,7 @@ Infrastructure Services:
 - **Idempotency**: Duplicate events are automatically detected and skipped
 - **Audit Trail**: All events logged to PostgreSQL for complete system observability
 
-📖 **[Complete Architecture Documentation →](./EVENT_DRIVEN_ARCHITECTURE.md)**
+📖 **[Complete Architecture Documentation →](./https://github.com/IT20011970/playfit_ecommerce/blob/main/diagrams/stage%202%20architecture.png)**
 
 ---
 ## 🎯 Design Patterns Implementation
