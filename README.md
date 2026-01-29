@@ -117,7 +117,7 @@ Infrastructure Services:
 - **Idempotency**: Duplicate events are automatically detected and skipped
 - **Audit Trail**: All events logged to PostgreSQL for complete system observability
 
-📖 **[Complete Architecture Documentation →](./blob/main/diagrams/stage%202%20architecture.png)**
+📖 **[Complete Architecture Documentation →](./stage%202%20architecture.png)**
 
 ---
 ## 🎯 Design Patterns Implementation
